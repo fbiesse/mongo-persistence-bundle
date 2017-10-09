@@ -1,0 +1,79 @@
+{% extends '@WebProfiler/Profiler/layout.html.twig' %}
+
+{% block toolbar %}
+    {% if collector.count > 0 %}
+        {% set text %}
+            <div class="sf-toolbar-info-piece">
+                <b>
+                    <small>Mongo calls</small>
+                </b>
+                <span>{{ collector.count }} calls</span>
+            </div>
+            <div class="sf-toolbar-info-piece">
+                <b>Total time</b>
+                <span>{{ '%0.0f'|format(collector.totaltime * 1000) }} ms</span>
+            </div>
+        {% endset %}
+
+        {% set icon %}
+            <img width="28" height="28" alt="Request" title="Mongo" alt="Mongo"
+                 src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAARCQAAEQkAGJrNK4AAAAB3RJTUUH3wsKCTgTqyEThQAAA3pJREFUSMet1luIlVUUB/DfmRkvJI1doORUJpZBRmpuo6A0qQd7ECIhjXoyiUiykqKLDxEZEVQEUXQhsHuCMUX1kBSk0l1WGSSVmd2oT9F0zDJjHKeXdep4mGu5YLP5vn35r7X2Wv+1aoYppRQRoZTSjg70ojci+oxAOkYClrIEC7AJH5RSvsI+/IF9rQqUUuCf87WRgJVSrsETGNWy7VN8lmMrtmMHtjcpOjRgC9gCPIXjh9CxN0G34pvmOSK21Ybp0tl4CScbufSmxbvQ1T6YdVVVKaVMQRcm4hBW4k0cwIkYOwRgGzoxAZ21ISJyPD7BGbl0Ex5P4PZ8y8m4FPMwp5/3bUgfZtYGARuN93BuLvXgSazC1/ndGxG9LefPw2Jc13L15XitNgDYGLyC+QNoux/rsQ7v46dMi99y/W6saNp/C55Bd60fsLF4NPNtuLIDH2Mj6ri+yY0P42UsxRu1FrBRuAe35WP/X3kVi3AfbkVXWxNYDTdi+REC24gbIqIHp+W/z9uamGBRhvyYIwBW4YqI+CW/9+U8sSMtuyCjb+wRAOvBJRHxQz7XdMxqcHcbjsaaIwQG8yLiywSbgHsxFT9ieVu6ckJG1IGc/4v0YUlEvJtg43B7ptYeXBYRezqwsOmR1yRzTMWpSWfDCaBDacmzTf+uxc2Zs0sjYlOjHs7KR30kIl5M7cZjOqbl3BijBwBchQcarFNKuRIPpiL3J4kopehIYt2NXxunI2IvNmBDsk7D2hmYjbl5Dtbizoj4PS+dg8eSa5/HQxFxsJF+HfguL5uGt1ordET8hS3YUkpZl9Z0pttPR1dE7EywSXgOxyXpL4uI/c11tb1er5+QGp9Sr9c/jIiqqqrWEqWqKlVVHaqq6s+qqrrr9frWfPfu3DMuy9ZZ2Im5EbEL6vW6xp21Usox+AInZbFcj9V4Hd04mFWhP5JvzG1p2dW5//yIiJZe6N8Wo5RyJl5IF3U2rX+UwG/jZ+yNiP39NEkrkqVquCoiVvcHdlhPk8ExP917NiZlsDRkM97JcvQtvo+I3aWUhXg6CeSuiFg5EFjDpYcFSVNazMhxDmamEg3Zlp3atiysUxJ0WUQcGCxha4P0n41/R6W1k7P6X4wLW+5Zi8URUQ3FELWRcFe6/Rgci4uaOoI7ImLzQEqPGHAAy9uaOveeiOgbCgz+Bs9WfBSvfo6AAAAAAElFTkSuQmCC"/>
+            <span class="sf-toolbar-status{% if 1 < collector.totaltime %} sf-toolbar-status-yellow{% endif %}">{{ collector.count }}</span>
+        {% endset %}
+        {% include '@WebProfiler/Profiler/toolbar_item.html.twig' with { 'link': 'profiler_url' } %}
+    {% endif %}
+{% endblock %}
+
+{% block menu %}
+    <span class="icon"><img title="Mongo" alt="Mongo"
+                            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAARCQAAEQkAGJrNK4AAAAB3RJTUUH3wsKCTgTqyEThQAAA3pJREFUSMet1luIlVUUB/DfmRkvJI1doORUJpZBRmpuo6A0qQd7ECIhjXoyiUiykqKLDxEZEVQEUXQhsHuCMUX1kBSk0l1WGSSVmd2oT9F0zDJjHKeXdep4mGu5YLP5vn35r7X2Wv+1aoYppRQRoZTSjg70ojci+oxAOkYClrIEC7AJH5RSvsI+/IF9rQqUUuCf87WRgJVSrsETGNWy7VN8lmMrtmMHtjcpOjRgC9gCPIXjh9CxN0G34pvmOSK21Ybp0tl4CScbufSmxbvQ1T6YdVVVKaVMQRcm4hBW4k0cwIkYOwRgGzoxAZ21ISJyPD7BGbl0Ex5P4PZ8y8m4FPMwp5/3bUgfZtYGARuN93BuLvXgSazC1/ndGxG9LefPw2Jc13L15XitNgDYGLyC+QNoux/rsQ7v46dMi99y/W6saNp/C55Bd60fsLF4NPNtuLIDH2Mj6ri+yY0P42UsxRu1FrBRuAe35WP/X3kVi3AfbkVXWxNYDTdi+REC24gbIqIHp+W/z9uamGBRhvyYIwBW4YqI+CW/9+U8sSMtuyCjb+wRAOvBJRHxQz7XdMxqcHcbjsaaIwQG8yLiywSbgHsxFT9ieVu6ckJG1IGc/4v0YUlEvJtg43B7ptYeXBYRezqwsOmR1yRzTMWpSWfDCaBDacmzTf+uxc2Zs0sjYlOjHs7KR30kIl5M7cZjOqbl3BijBwBchQcarFNKuRIPpiL3J4kopehIYt2NXxunI2IvNmBDsk7D2hmYjbl5Dtbizoj4PS+dg8eSa5/HQxFxsJF+HfguL5uGt1ordET8hS3YUkpZl9Z0pttPR1dE7EywSXgOxyXpL4uI/c11tb1er5+QGp9Sr9c/jIiqqqrWEqWqKlVVHaqq6s+qqrrr9frWfPfu3DMuy9ZZ2Im5EbEL6vW6xp21Usox+AInZbFcj9V4Hd04mFWhP5JvzG1p2dW5//yIiJZe6N8Wo5RyJl5IF3U2rX+UwG/jZ+yNiP39NEkrkqVquCoiVvcHdlhPk8ExP917NiZlsDRkM97JcvQtvo+I3aWUhXg6CeSuiFg5EFjDpYcFSVNazMhxDmamEg3Zlp3atiysUxJ0WUQcGCxha4P0n41/R6W1k7P6X4wLW+5Zi8URUQ3FELWRcFe6/Rgci4uaOoI7ImLzQEqPGHAAy9uaOveeiOgbCgz+Bs9WfBSvfo6AAAAAAElFTkSuQmCC"
+                            alt="Request"></span>
+    <span class="label">
+        <strong>MongoDb</strong>
+    </span>
+    <span class="count">
+        <span>{{ collector.count }}</span>
+        <span>{{ '%0.0f'|format(collector.totaltime * 1000) }} ms</span>
+    </span>
+{% endblock %}
+
+{% block panel %}
+    <h2>MongoDb calls</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>Collection</th>
+            <th>Function</th>
+            <th>Arguments</th>
+            <th>Time</th>
+            <th>Calling Function</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {% set callNb = 0 %}
+        {% for call in collector.calls %}
+            {% set callNb = callNb+1 %}
+            {% set backtraceId = "backtrace"~callNb %}
+            <tr>
+                <td>{{ call.collection }}</td>
+                <td>{{ call.funcname }}</td>
+                <td>
+                    <pre>{{ call.arguments }}</pre>
+                </td>
+                <td>{{ call.time|number_format(7) }}</td>
+                <td><abbr title="{{ call.backtrace }}" class="sf-toggle" data-toggle-selector="#{{ backtraceId }}">{{ call.functionnamecaller }}</abbr></td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <div id="{{ backtraceId }}" style="overflow-x: auto;width: 100%">
+                        <div style="width: 200%">
+                        {{ call.backtrace|nl2br }}
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

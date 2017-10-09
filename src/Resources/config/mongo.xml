@@ -1,0 +1,29 @@
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="mongo_client" class="MongoDB\Client">
+            <argument type="string">%mongo.server_uri%</argument>
+            <argument type="collection">
+                <argument key="authMechanism">%mongo.authmechanism%</argument>
+            </argument>
+        </service>
+
+        <service id="database.real" class="MongoDb\Database" >
+            <factory service="mongo_client" method="selectDatabase" />
+            <argument type="string">%mongo.db_name%</argument>
+        </service>
+
+        <service id="mongodb.data_collector" class="FBiesse\Sf\Bundle\MongoPersistenceBundle\Infrastructure\Domain\Service\Mongo\MongoDataCollector">
+            <argument type="service" id="database" />
+            <tag name="data_collector" id="datacollector_mongodb" template="FBiesseSfBundleMongoPersistenceBundle:Collector:mongodb" />
+        </service>
+
+        <service id="database.profiling" class="FBiesse\Sf\Bundle\MongoPersistenceBundle\Infrastructure\Domain\Service\Mongo\ProfilingDatabase" >
+            <argument type="service" id="mongo_client"/>
+            <argument type="string">%mongo.db_name%</argument>
+        </service>
+    </services>
+</container>
