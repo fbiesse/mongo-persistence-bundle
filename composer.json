@@ -16,11 +16,17 @@
     "symfony/config": "~2.3|~3.0",
     "symfony/http-foundation": "~2.3|~3.0",
     "symfony/http-kernel": "~2.3|~3.0",
-    "symfony/dependency-injection": "~2.3|~3.0",
-    "jms/serializer":"1.*"
+    "symfony/dependency-injection": "~2.3|~3.0"
+
   },
   "require-dev": {
-
+    "atoum/atoum": "^3.2",
+    "jms/serializer": "1.*",
+    "doctrine/annotations": "^1.4.0",
+    "symfony/yaml": "^3.3"
+  },
+  "suggest": {
+    "jms/serializer": "Allow to use the the class JMSArraySerializerService so serialize objects into arrays"
   },
   "autoload": {
     "psr-4": {

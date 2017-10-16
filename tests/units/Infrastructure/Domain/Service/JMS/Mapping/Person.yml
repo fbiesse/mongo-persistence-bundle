@@ -1,0 +1,9 @@
+FBiesse\Sf\Bundle\MongoPersistenceBundle\Infrastructure\Domain\Service\JMS\Entity\test\unit\Person:
+  exclusion_policy: ALL
+  properties:
+    name:
+      type: string
+    firstName:
+      type: string
+    birthDate:
+      type: DateTime

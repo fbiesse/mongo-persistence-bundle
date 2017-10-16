@@ -1,0 +1,12 @@
+FBiesse\Sf\Bundle\MongoPersistenceBundle\Infrastructure\Domain\Service\JMS\Entity\test\unit\Family:
+  exclusion_policy: ALL
+  properties:
+    id:
+      type: integer
+      serialized_name : _id
+    father:
+      type: FBiesse\Sf\Bundle\MongoPersistenceBundle\Infrastructure\Domain\Service\JMS\Entity\test\unit\Person
+    mother:
+      type: FBiesse\Sf\Bundle\MongoPersistenceBundle\Infrastructure\Domain\Service\JMS\Entity\test\unit\Person
+    children:
+      type: array<FBiesse\Sf\Bundle\MongoPersistenceBundle\Infrastructure\Domain\Service\JMS\Entity\test\unit\Person>
